@@ -71,7 +71,11 @@ In your Netlify dashboard, ensure these settings:
    - Node version specification
    - Legacy peer deps in build command
 
-6. **Removed conflicting lock files:**
+6. **Removed OG route:**
+   - Deleted `app/og/route.tsx` (not compatible with Next.js 13.5.6)
+   - Updated blog metadata to not reference OG images
+
+7. **Removed conflicting lock files:**
    - Deleted `package-lock.json`
    - Deleted `pnpm-lock.yaml`
 
