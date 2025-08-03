@@ -15,9 +15,9 @@ rm -f yarn.lock
 echo "Clearing npm cache..."
 npm cache clean --force
 
-# Install dependencies with legacy peer deps
+# Install dependencies
 echo "Installing dependencies..."
-npm install --legacy-peer-deps --no-optional
+npm install --no-optional
 
 # Verify React installation
 echo "Verifying React installation..."
