@@ -1,14 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     webpack: (config, { isServer }) => {
-        // Ensure single React instance
+        // Ensure proper React resolution
         config.resolve.alias = {
             ...config.resolve.alias,
             'react': require.resolve('react'),
             'react-dom': require.resolve('react-dom'),
         }
 
+        // Ensure JSX runtime is properly resolved
+        config.resolve.fallback = {
+            ...config.resolve.fallback,
+            'react/jsx-runtime': require.resolve('react/jsx-runtime'),
+            'react/jsx-dev-runtime': require.resolve('react/jsx-dev-runtime'),
+        }
+
         return config
+    },
+    experimental: {
+        esmExternals: false,
     },
 }
 
