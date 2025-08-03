@@ -6,6 +6,7 @@ const nextConfig = {
             ...config.resolve.alias,
             'react': require.resolve('react'),
             'react-dom': require.resolve('react-dom'),
+            'react-dom/client': require.resolve('react-dom/client'),
         }
 
         // Ensure JSX runtime is properly resolved

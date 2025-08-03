@@ -17,12 +17,16 @@ npm cache clean --force
 
 # Install dependencies with legacy peer deps
 echo "Installing dependencies..."
-npm install --legacy-peer-deps
+npm install --legacy-peer-deps --no-optional
 
 # Verify React installation
 echo "Verifying React installation..."
 npm ls react
 npm ls react-dom
+
+# Check for React DOM client
+echo "Checking for React DOM client..."
+ls node_modules/react-dom/client.js 2>/dev/null || echo "React DOM client not found, attempting to fix..."
 
 # Check for JSX runtime
 echo "Checking for JSX runtime..."

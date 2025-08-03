@@ -46,9 +46,9 @@ In your Netlify dashboard, ensure these settings:
 ### 4. Key Changes Made
 
 1. **Updated package.json:**
-   - Changed Next.js from `canary` to stable `13.5.6` (most compatible)
-   - Updated React to `18.2.0` (stable version)
-   - Updated React DOM to `18.2.0` (stable version)
+   - Changed Next.js from `canary` to stable `13.4.19` (most compatible)
+   - Updated React to `18.1.0` (stable version)
+   - Updated React DOM to `18.1.0` (stable version)
    - Added `overrides` and `resolutions` to force React version consistency
 
 2. **Added .npmrc:**
@@ -60,11 +60,12 @@ In your Netlify dashboard, ensure these settings:
 
 3. **Enhanced next.config.js:**
    - Added webpack fallback for JSX runtime resolution
-   - React aliases for consistency
+   - React and React DOM client aliases for consistency
    - Disabled ESM externals for better compatibility
 
 4. **Updated tsconfig.json:**
    - Changed `moduleResolution` back to `node` for better compatibility
+   - Changed JSX setting back to `preserve` for better compatibility
 
 5. **Updated netlify.toml:**
    - Combined install and build commands
@@ -93,8 +94,8 @@ If you still encounter issues:
    ```json
    {
      "overrides": {
-       "react": "18.2.0",
-       "react-dom": "18.2.0"
+       "react": "18.1.0",
+       "react-dom": "18.1.0"
      }
    }
    ```
