@@ -46,26 +46,32 @@ In your Netlify dashboard, ensure these settings:
 ### 4. Key Changes Made
 
 1. **Updated package.json:**
-   - Changed Next.js from `canary` to stable `15.4.2`
+   - Changed Next.js from `canary` to stable `14.2.5` (more compatible)
    - Updated React to `18.2.0` (stable version)
    - Updated React DOM to `18.2.0` (stable version)
-   - Added `overrides` to force React version consistency
+   - Added `overrides` and `resolutions` to force React version consistency
 
 2. **Added .npmrc:**
    - `legacy-peer-deps=true`
    - `strict-peer-dependencies=false`
    - `auto-install-peers=true`
    - `resolution-mode=highest`
+   - `save-exact=true`
 
-3. **Updated next.config.js:**
-   - Webpack aliases to ensure single React instance
-   - Added JSX runtime aliases (`react/jsx-runtime`, `react/jsx-dev-runtime`)
-   - MDX experimental features
+3. **Simplified next.config.js:**
+   - Removed experimental MDX features
+   - Basic webpack aliases for React consistency
+   - Removed complex JSX runtime configuration
 
 4. **Updated tsconfig.json:**
-   - Changed `moduleResolution` to `bundler` for better module resolution
+   - Changed `moduleResolution` back to `node` for better compatibility
 
-5. **Removed conflicting lock files:**
+5. **Added netlify.toml:**
+   - Explicit build configuration
+   - Node version specification
+   - Legacy peer deps flag
+
+6. **Removed conflicting lock files:**
    - Deleted `package-lock.json`
    - Deleted `pnpm-lock.yaml`
 

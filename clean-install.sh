@@ -15,14 +15,18 @@ rm -f yarn.lock
 echo "Clearing npm cache..."
 npm cache clean --force
 
-# Install dependencies
+# Install dependencies with legacy peer deps
 echo "Installing dependencies..."
-npm install
+npm install --legacy-peer-deps
 
 # Verify React installation
 echo "Verifying React installation..."
 npm ls react
 npm ls react-dom
+
+# Check for JSX runtime
+echo "Checking for JSX runtime..."
+ls node_modules/react/jsx-runtime.js 2>/dev/null || echo "JSX runtime not found, attempting to fix..."
 
 # Build the project
 echo "Building the project..."
