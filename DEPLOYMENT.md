@@ -1,8 +1,8 @@
 # Deployment Instructions
 
-## Fixing React Version Conflicts
+## Fixing React Version Conflicts and JSX Runtime Issues
 
-The build error is caused by multiple React versions being used. Follow these steps to resolve:
+The build error is caused by multiple React versions being used and missing JSX runtime modules. Follow these steps to resolve:
 
 ### 1. Clean Installation
 Run the clean install script:
@@ -47,19 +47,25 @@ In your Netlify dashboard, ensure these settings:
 
 1. **Updated package.json:**
    - Changed Next.js from `canary` to stable `15.4.2`
-   - Updated React to `^18.3.1`
-   - Updated React DOM to `^18.3.1`
+   - Updated React to `18.2.0` (stable version)
+   - Updated React DOM to `18.2.0` (stable version)
+   - Added `overrides` to force React version consistency
 
 2. **Added .npmrc:**
    - `legacy-peer-deps=true`
    - `strict-peer-dependencies=false`
    - `auto-install-peers=true`
+   - `resolution-mode=highest`
 
-3. **Added next.config.js:**
+3. **Updated next.config.js:**
    - Webpack aliases to ensure single React instance
+   - Added JSX runtime aliases (`react/jsx-runtime`, `react/jsx-dev-runtime`)
    - MDX experimental features
 
-4. **Removed conflicting lock files:**
+4. **Updated tsconfig.json:**
+   - Changed `moduleResolution` to `bundler` for better module resolution
+
+5. **Removed conflicting lock files:**
    - Deleted `package-lock.json`
    - Deleted `pnpm-lock.yaml`
 
@@ -77,8 +83,8 @@ If you still encounter issues:
    ```json
    {
      "overrides": {
-       "react": "^18.3.1",
-       "react-dom": "^18.3.1"
+       "react": "18.2.0",
+       "react-dom": "18.2.0"
      }
    }
    ```
@@ -94,4 +100,4 @@ npm run build
 npm start
 ```
 
-This should resolve the "A React Element from an older version of React was rendered" error. 
+This should resolve both the "A React Element from an older version of React was rendered" error and the "Module not found: Can't resolve 'react/jsx-runtime'" error. 
