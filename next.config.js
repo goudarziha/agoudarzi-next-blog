@@ -1,6 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Let Next.js handle module resolution automatically
+    webpack: (config, { isServer }) => {
+        // Ensure proper React resolution
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            'react': require.resolve('react'),
+            'react-dom': require.resolve('react-dom'),
+        }
+
+        // Ensure JSX runtime is properly resolved
+        config.resolve.fallback = {
+            ...config.resolve.fallback,
+            'react/jsx-runtime': require.resolve('react/jsx-runtime'),
+            'react/jsx-dev-runtime': require.resolve('react/jsx-dev-runtime'),
+        }
+
+        return config
+    },
 }
 
 module.exports = nextConfig 

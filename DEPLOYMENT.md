@@ -47,19 +47,22 @@ In your Netlify dashboard, ensure these settings:
 
 1. **Updated package.json:**
    - Changed Next.js from `canary` to stable `13.4.19` (most compatible)
-   - Updated React to `17.0.2` (stable version)
-   - Updated React DOM to `17.0.2` (stable version)
-   - Updated TypeScript types to match React 17
+   - Updated React to `18.2.0` (required by Next.js 13.4.19)
+   - Updated React DOM to `18.2.0` (matches React version)
+   - Updated TypeScript types to match React 18
    - Added `overrides` and `resolutions` to force React version consistency
 
 2. **Updated .npmrc:**
+   - `legacy-peer-deps=true`
+   - `strict-peer-dependencies=false`
    - `auto-install-peers=true`
    - `resolution-mode=highest`
    - `save-exact=true`
-   - Removed legacy peer deps (not needed for React 17)
+   - Added back legacy peer deps for React 18 compatibility
 
-3. **Simplified next.config.js:**
-   - Removed webpack configuration to let Next.js handle module resolution
+3. **Enhanced next.config.js:**
+   - Added webpack aliases for React and React DOM
+   - Added fallback for JSX runtime resolution
    - Removed experimental features that were causing conflicts
 
 4. **Updated tsconfig.json:**
@@ -69,7 +72,7 @@ In your Netlify dashboard, ensure these settings:
 5. **Updated netlify.toml:**
    - Combined install and build commands
    - Node version specification
-   - Removed legacy peer deps flag
+   - Added back legacy peer deps flag for React 18
 
 6. **Removed OG route:**
    - Deleted `app/og/route.tsx` (not compatible with Next.js 13.5.6)
@@ -93,8 +96,8 @@ If you still encounter issues:
    ```json
    {
      "overrides": {
-       "react": "17.0.2",
-       "react-dom": "17.0.2"
+       "react": "18.2.0",
+       "react-dom": "18.2.0"
      }
    }
    ```
